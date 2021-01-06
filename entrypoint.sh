@@ -12,7 +12,7 @@ if [ $DEBUG ]; then
 	echo " "
 	echo "Installing development requirements.."
 	# pip3 install -r requirements-dev.txt
-	pipenv install --dev
+	pipenv install --dev --system --deploy --ignore-pipfile
 
 	echo " "
 	echo "Starting local development server.."
