@@ -21,14 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '@6$vn=xy(gpj)^85@n882qdavz=@+91gcwych+j&phlh6fv8(d'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 DEBUG = bool(os.environ.get('DEBUG', False))
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 
 # Application definition
@@ -43,11 +42,13 @@ INSTALLED_APPS = [
     'rest_framework',
     # 'rest_framework_docs',
     # 'rest_framework.authtoken',
-    # 'corsheaders',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,6 +134,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / "static"
 
 # REST Framework configurations
 
@@ -152,3 +154,18 @@ REST_FRAMEWORK = {
         'user': '1000/day',
     }
 }
+
+# CORS Headers settings
+
+# CORS_ORIGIN_WHITELIST = (
+#     os.environ.get('CORS_ORIGIN_WHITELIST')
+# )
+
+# CORS_ALLOW_HEADERS = (
+#    'x-requested-with',
+#    'content-type',
+#    'accept',
+#    'origin',
+#    'authorization',
+#    'x-csrftoken'
+# )
