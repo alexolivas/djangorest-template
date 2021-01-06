@@ -147,7 +147,8 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_CLASSES': (
         'rest_framework.throttling.ScopedRateThrottle',
     ),
-    # 'DEFAULT_THROTTLE_RATES': {
-    #     'contacts': '50/day',
-    # }
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day',
+    }
 }
