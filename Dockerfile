@@ -25,4 +25,7 @@ COPY . /opt/project_name
 # Set the working directory
 WORKDIR /opt/project_name/
 
+# Install pipenv and project dependencies
+RUN pip install pipenv && pipenv install --system --deploy --ignore-pipfile
+
 ENTRYPOINT [ "./entrypoint.sh" ]
