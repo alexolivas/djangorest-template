@@ -4,10 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-djangorestframework = "==3.12.2"
 Django = "==3.1.4"
+django-cors-headers = "==3.6.0"
+djangorestframework = "==3.12.2"
+gunicorn = "*"
+whitenoise = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
+coverage = "*"
+ipdb = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"

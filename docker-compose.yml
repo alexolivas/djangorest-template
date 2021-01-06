@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: project_name-db
+    image: postgres
+    restart: always
+    env_file: .env
+    ports:
+      - '5432:5432'
+    # volumes:
+    #   - ./pgdata:/var/lib/postgresql/data
+    volumes:
+       - db-data:/data/postgres
+    networks:
+      - project_name
+
+  project_name:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: project_name
+    container_name: project_name
+    image: alexolivas/project_name
+    volumes:
+      - .:/opt/project_name
+    env_file: .env
+    ports:
+      - '8008:8008'
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - project_name
+
+volumes:
+  db-data:
+
+networks:
+  project_name:
