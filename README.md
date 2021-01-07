@@ -52,6 +52,18 @@ To start a container
 docker-compose up
 ```
 
+## Dependency Management With Pipenv
+
+This project uses `Pipenv` to manage it's dependencies. There's no need to do anything to setup the project, but if you want add or delete packages you'll have to install them via Pipenv within your project's docker container. This project doesn't rely on setting up a virtualenv for development since the docker container's volume is mounted to your local computer.
+
+## Code Formatting
+
+This project uses `black` code formatter to keep your python code styling consistent.
+
+```bash
+black .
+```
+
 ## License: MIT
 
 ## Further Reading
